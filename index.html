@@ -1,0 +1,1324 @@
+﻿<!DOCTYPE html>
+<html lang="fr" id="html-tag">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heuro Bank – Portail de Banque en Ligne</title>
+    <style>
+        /* ----- Heuro Brand Colors ----- */
+        :root {
+            --heuro-dark: #0a0e27;
+            --heuro-primary: #1a237e;
+            --heuro-secondary: #283593;
+            --heuro-accent: #5c6bc0;
+            --heuro-light: #e8eaf6;
+            --heuro-white: #ffffff;
+            --heuro-gold: #ffd54f;
+            --danger: #d32f2f;
+            --success: #2e7d32;
+            --text: #1a1a2e;
+            --bg: #f5f7ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100%;
+        }
+
+        /* ----- Language Picker ----- */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-right: 20px;
+            flex-wrap: wrap;
+        }
+        .lang-btn {
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            color: #999;
+            padding: 4px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: var(--heuro-white);
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--heuro-primary);
+            color: var(--heuro-white);
+            border-color: var(--heuro-primary);
+        }
+
+        /* ----- Navigation ----- */
+        #public-nav {
+            background: var(--heuro-dark);
+            padding: 14px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--heuro-gold);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--heuro-white);
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--heuro-gold);
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        /* ----- Buttons (White background, Blue text) ----- */
+        .btn-portal {
+            background: var(--heuro-white);
+            color: var(--heuro-primary);
+            border: 1px solid var(--heuro-primary);
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+        .btn-portal:hover {
+            background: var(--heuro-light);
+            transform: scale(1.02);
+        }
+
+        .btn-hero {
+            background: var(--heuro-white);
+            color: var(--heuro-primary);
+            border: 1px solid var(--heuro-primary);
+            padding: 14px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-hero:hover {
+            background: var(--heuro-light);
+            transform: scale(1.03);
+        }
+
+        /* ----- Sections ----- */
+        #home-section {
+            display: block;
+        }
+        .hero {
+            height: 62vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.80) 0%, rgba(26, 35, 126, 0.75) 100%),
+                url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200') center/cover;
+            color: var(--heuro-white);
+            padding: 20px;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .hero h1 span {
+            color: var(--heuro-gold);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 620px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+
+        .footer-addr {
+            background: var(--heuro-white);
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: #666;
+        }
+        .footer-addr strong {
+            color: var(--heuro-primary);
+        }
+
+        /* ----- Login Section ----- */
+        #login-section {
+            display: none;
+            height: 85vh;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg);
+        }
+        .login-card {
+            background: var(--heuro-white);
+            padding: 44px 40px 40px;
+            border-radius: 16px;
+            border-top: 6px solid var(--heuro-gold);
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(10, 14, 39, 0.15);
+        }
+        .login-card h2 {
+            color: var(--heuro-primary);
+            margin-top: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* ----- Dashboard ----- */
+        #dashboard-container {
+            display: none;
+            height: 100vh;
+            width: 100%;
+        }
+        .sidebar {
+            width: 260px;
+            background: var(--heuro-primary);
+            height: 100vh;
+            position: fixed;
+            color: var(--heuro-white);
+            z-index: 10;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar-brand {
+            padding: 28px 26px;
+            font-size: 22px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .sidebar-brand span {
+            color: var(--heuro-gold);
+        }
+        .sidebar-item {
+            padding: 16px 26px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sidebar-item:hover {
+            background: var(--heuro-secondary);
+        }
+        .sidebar-item.active {
+            background: var(--heuro-dark);
+            font-weight: 700;
+            border-left: 4px solid var(--heuro-gold);
+        }
+
+        .main-view {
+            margin-left: 260px;
+            padding: 40px 48px;
+            width: calc(100% - 260px);
+            box-sizing: border-box;
+            min-height: 100vh;
+            background: var(--bg);
+        }
+        .page-view {
+            display: none;
+        }
+        .page-view.active {
+            display: block;
+        }
+
+        /* ----- Cards ----- */
+        .card {
+            background: var(--heuro-white);
+            padding: 28px 32px;
+            margin-bottom: 28px;
+            border-radius: 12px;
+            border: 1px solid #e8ecf4;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        .balance-val {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--heuro-primary);
+            margin: 12px 0 6px;
+        }
+        .balance-val .currency {
+            font-size: 22px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        /* ----- Forms ----- */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--heuro-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d0d7e6;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: 0.2s;
+            background: #fafbff;
+        }
+        .form-group input:focus {
+            border-color: var(--heuro-accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(92, 107, 192, 0.15);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--heuro-primary);
+            color: var(--heuro-white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .btn-submit:hover {
+            background: var(--heuro-secondary);
+            transform: scale(1.01);
+        }
+
+        /* ----- Tables ----- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: var(--heuro-light);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--heuro-primary);
+            border-bottom: 2px solid #d0d7e6;
+        }
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #eef2f7;
+            font-size: 14px;
+        }
+        .amt-pos {
+            color: var(--success);
+            font-weight: 700;
+        }
+        .amt-neg {
+            color: var(--danger);
+            font-weight: 700;
+        }
+
+        /* ----- Error Banner ----- */
+        .error-banner {
+            background: #fff5f5;
+            color: #b71c1c;
+            padding: 22px 26px;
+            border-left: 6px solid var(--danger);
+            border-radius: 8px;
+            margin-bottom: 28px;
+            display: none;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .error-banner strong {
+            font-size: 1.1em;
+        }
+        .error-banner a {
+            color: var(--heuro-primary);
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .error-banner a:hover {
+            color: var(--heuro-secondary);
+        }
+
+        /* ----- Utilities ----- */
+        .text-muted {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* ----- Top Up & Copy Button (improved) ----- */
+        .topup-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eef2f7;
+            font-size: 15px;
+            gap: 10px;
+        }
+        .topup-detail:last-child {
+            border-bottom: none;
+        }
+        .topup-label {
+            font-weight: 600;
+            color: var(--heuro-primary);
+            flex-shrink: 0;
+        }
+        .topup-value-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .topup-value {
+            color: #1a1a2e;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        /* ---- Copy button design (universal) ---- */
+        .copy-btn {
+            position: relative;
+            background: transparent;
+            border: 1.5px solid var(--heuro-primary);
+            border-radius: 6px;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            color: var(--heuro-primary);
+            font-size: 16px;
+            line-height: 1;
+        }
+        .copy-btn:hover {
+            background: var(--heuro-primary);
+            color: white;
+            transform: scale(1.05);
+        }
+        .copy-btn:hover svg path {
+            fill: white;
+        }
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+        .copy-btn .copy-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+        .copy-btn .copy-icon svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
+        .copy-btn .copy-icon svg path {
+            fill: var(--heuro-primary);
+            transition: fill 0.2s ease;
+        }
+        .copy-btn:hover .copy-icon svg path {
+            fill: white;
+        }
+        .copy-btn .check-icon {
+            display: none;
+            font-size: 18px;
+            line-height: 1;
+        }
+        .copy-btn.copied {
+            border-color: var(--success);
+            background: var(--success);
+            color: white;
+        }
+        .copy-btn.copied .copy-icon {
+            display: none;
+        }
+        .copy-btn.copied .check-icon {
+            display: inline;
+        }
+        .copy-btn.copied:hover .copy-icon svg path {
+            fill: white;
+        }
+
+        /* ---- Tooltip "Copied" ---- */
+        .copy-tooltip {
+            position: fixed;
+            background: var(--heuro-dark);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 6px;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(0px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 9999;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+        .copy-tooltip.show {
+            opacity: 1;
+            transform: translateY(-6px);
+        }
+        .copy-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--heuro-dark);
+        }
+
+        /* ----- Responsive ----- */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .main-view {
+                margin-left: 200px;
+                padding: 24px 20px;
+                width: calc(100% - 200px);
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .login-card {
+                padding: 30px 24px;
+                margin: 0 16px;
+            }
+            #public-nav {
+                padding: 12px 4%;
+                flex-wrap: wrap;
+            }
+            .logo {
+                font-size: 22px;
+            }
+            .btn-portal {
+                padding: 8px 14px;
+                font-size: 11px;
+            }
+            .topup-detail {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .topup-value-wrapper {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-view {
+                margin-left: 0;
+                width: 100%;
+                padding: 16px;
+            }
+            .sidebar-item {
+                padding: 12px 18px;
+                font-size: 13px;
+            }
+            .balance-val {
+                font-size: 28px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== PUBLIC NAV ===== -->
+    <nav id="public-nav">
+        <div class="logo">HÉURO</div>
+        <div class="nav-right">
+            <div class="lang-switcher">
+                <div class="lang-btn active" id="btn-fr" onclick="setLanguage('fr')">FR</div>
+                <div class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</div>
+                <div class="lang-btn" id="btn-dk" onclick="setLanguage('dk')">DK</div>
+                <div class="lang-btn" id="btn-se" onclick="setLanguage('se')">SE</div>
+                <div class="lang-btn" id="btn-no" onclick="setLanguage('no')">NO</div>
+            </div>
+            <button class="btn-portal" id="txt-login-btn" onclick="showSection('login')">Connexion en ligne</button>
+        </div>
+    </nav>
+
+    <!-- ===== HOME SECTION ===== -->
+    <section id="home-section">
+        <div class="hero">
+            <div>
+                <h1>Faciliter la <span>liquidité financière</span><br />avec des stablecoins</h1>
+                <p id="txt-hero-p">HEURO est un stablecoin en euros — régulé, transparent et conçu pour des transactions sans frontières. Sécurisez votre patrimoine avec la stabilité de l'euro et la rapidité de la blockchain.</p>
+                <button class="btn-hero" id="txt-hero-btn" onclick="showSection('login')">→ Accéder au portail</button>
+            </div>
+        </div>
+        <div class="footer-addr">
+            <strong>Heuro SAS (Société par actions simplifiée)</strong>, société par actions simplifiée de droit français, immatriculée au Registre du Commerce et des Sociétés de Paris (n° 833 165 863).<br />
+            © 2026 Heuro. Tous droits réservés.
+        </div>
+    </section>
+
+    <!-- ===== LOGIN SECTION ===== -->
+    <section id="login-section">
+        <div class="login-card">
+            <h2 id="txt-login-h2">Connexion</h2>
+            <div class="form-group">
+                <label id="txt-label-user">E‑MAIL / N° DE COMPTE</label>
+                <input type="text" id="user" placeholder="exemple@email.com" />
+            </div>
+            <div class="form-group">
+                <label id="txt-label-pass">MOT DE PASSE / PIN</label>
+                <input type="password" id="pass" placeholder="••••••••" />
+            </div>
+            <button class="btn-submit" id="txt-btn-auth" onclick="attemptLogin()">VALIDER LA CONNEXION</button>
+        </div>
+    </section>
+
+    <!-- ===== DASHBOARD ===== -->
+    <section id="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-brand">HÉURO<span>Banque</span></div>
+            <div class="sidebar-item active" id="nav-synth" onclick="navigateTo('synth')">
+                <span id="txt-nav-synth">Situation financière</span>
+            </div>
+            <div class="sidebar-item" id="nav-vire" onclick="navigateTo('vire')">
+                <span id="txt-nav-vire">Paiements et virements</span>
+            </div>
+            <div class="sidebar-item" id="nav-topup" onclick="navigateTo('topup')">
+                <span id="txt-nav-topup">Rechargement</span>
+            </div>
+            <div class="sidebar-item" id="nav-cont" onclick="navigateTo('cont')">
+                <span id="txt-nav-cont">Service client</span>
+            </div>
+            <div class="sidebar-item" id="txt-logout" onclick="logout()" style="margin-top:40px; opacity:0.6; border-top:1px solid rgba(255,255,255,0.08);">
+                <span>Se déconnecter</span>
+            </div>
+        </div>
+
+        <!-- Main View -->
+        <div class="main-view">
+            <!-- PAGE: Synth (Dashboard) -->
+            <div id="page-synth" class="page-view active">
+                <h1 id="txt-dash-h1" style="color:var(--heuro-primary); font-weight:700; font-size:1.8rem;">
+                    Aperçu du compte – M. Flemming Gordon Olsen
+                </h1>
+                <div class="card">
+                    <span id="txt-balance-lbl" style="color:#666; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">SOLDE TOTAL</span>
+                    <div class="balance-val" id="balance-display">32.849,06 €</div>
+                    <div id="txt-account-type" style="color:var(--heuro-accent); font-weight:600; font-size:15px;">
+                        Compte privé Premium HEURO n° 1796274
+                    </div>
+                </div>
+
+                <div class="card" style="padding:0;">
+                    <div id="txt-trans-title" style="padding:18px 24px; font-weight:700; border-bottom:1px solid #eef2f7; font-size:16px; color:var(--heuro-primary);">
+                        📋 Historique des transactions
+                    </div>
+                    <table>
+                        <thead>
+                            <tr id="txt-table-head"><th>DATE</th><th>LIBELLÉ</th><th>MONTANT</th></tr>
+                        </thead>
+                        <tbody id="trans-body">
+                            <!-- JS fills this -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PAGE: Vire (Payments and Transfers) -->
+            <div id="page-vire" class="page-view">
+                <h1 id="txt-vire-h1" style="color:var(--heuro-primary); font-weight:700;">Virement SEPA</h1>
+                <div id="transfer-error" class="error-banner"></div>
+
+                <div class="card" style="max-width:700px;">
+                    <div class="form-group">
+                        <label id="txt-vire-from">COMPTE DÉBITEUR</label>
+                        <input type="text" id="vire-account-val" disabled style="background:#f0f3fc; color:var(--heuro-primary); font-weight:600;" />
+                    </div>
+                    <div class="form-group">
+                        <label id="txt-vire-name">NOM DU BÉNÉFICIAIRE</label>
+                        <input type="text" placeholder="" />
+                    </div>
+                    <div class="form-group">
+                        <label>IBAN</label>
+                        <input type="text" placeholder="" />
+                    </div>
+                    <div class="form-group">
+                        <label id="txt-vire-amt">MONTANT (€)</label>
+                        <input type="number" placeholder="0.00" />
+                    </div>
+                    <button class="btn-submit" id="txt-vire-btn" onclick="triggerVirementError()">
+                        EXÉCUTER LE VIREMENT
+                    </button>
+                    <p style="margin-top:14px; font-size:13px; color:#888; text-align:center;" id="txt-transfer-note">
+                        Le virement peut prendre 1 à 3 jours ouvrables selon les banques intermédiaires.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PAGE: Top Up -->
+            <div id="page-topup" class="page-view">
+                <h1 id="txt-topup-h1" style="color:var(--heuro-primary); font-weight:700;">Rechargement</h1>
+                <div class="card" style="max-width:700px;">
+                    <!-- Receiver -->
+                    <div class="topup-detail">
+                        <span class="topup-label" id="txt-topup-receiver-label">Bénéficiaire</span>
+                        <div class="topup-value-wrapper">
+                            <span class="topup-value" id="val-topup-receiver">Gordon Olsen Flemming</span>
+                            <button class="copy-btn" id="btn-copy-receiver" data-copy="Gordon Olsen Flemming" onclick="copyText(this)">
+                                <span class="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </span>
+                                <span class="check-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- IBAN -->
+                    <div class="topup-detail">
+                        <span class="topup-label">IBAN</span>
+                        <div class="topup-value-wrapper">
+                            <span class="topup-value" id="val-topup-iban">DK7889000048997318</span>
+                            <button class="copy-btn" id="btn-copy-iban" data-copy="DK7889000048997318" onclick="copyText(this)">
+                                <span class="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </span>
+                                <span class="check-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- BIC/SWIFT -->
+                    <div class="topup-detail">
+                        <span class="topup-label">BIC/SWIFT</span>
+                        <div class="topup-value-wrapper">
+                            <span class="topup-value" id="val-topup-bic">SXPYDKKKXXX</span>
+                            <button class="copy-btn" id="btn-copy-bic" data-copy="SXPYDKKKXXX" onclick="copyText(this)">
+                                <span class="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </span>
+                                <span class="check-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Bank -->
+                    <div class="topup-detail">
+                        <span class="topup-label" id="txt-topup-bank-label">Banque</span>
+                        <div class="topup-value-wrapper">
+                            <span class="topup-value" id="val-topup-bank">Banking Circle</span>
+                            <button class="copy-btn" id="btn-copy-bank" data-copy="Banking Circle" onclick="copyText(this)">
+                                <span class="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </span>
+                                <span class="check-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Bank Address -->
+                    <div class="topup-detail">
+                        <span class="topup-label" id="txt-topup-address-label">Adresse de la banque</span>
+                        <div class="topup-value-wrapper">
+                            <span class="topup-value" id="val-topup-address">Philip Heymans Allé 15, 2900 Hellerup</span>
+                            <button class="copy-btn" id="btn-copy-address" data-copy="Philip Heymans Allé 15, 2900 Hellerup" onclick="copyText(this)">
+                                <span class="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </span>
+                                <span class="check-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Currency / Valuta -->
+                    <div class="topup-detail">
+                        <span class="topup-label" id="txt-topup-currency-label">Valuta</span>
+                        <div class="topup-value-wrapper">
+                            <span class="topup-value" id="val-topup-currency">EUR</span>
+                            <button class="copy-btn" id="btn-copy-currency" data-copy="EUR" onclick="copyText(this)">
+                                <span class="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </span>
+                                <span class="check-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Reference -->
+                    <div class="topup-detail">
+                        <span class="topup-label" id="txt-topup-reference-label">Référence</span>
+                        <div class="topup-value-wrapper">
+                            <span class="topup-value" id="val-topup-reference">Gordon Olsen Flemming</span>
+                            <button class="copy-btn" id="btn-copy-reference" data-copy="Gordon Olsen Flemming" onclick="copyText(this)">
+                                <span class="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </span>
+                                <span class="check-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p style="font-size:14px; color:#666; margin-top:16px;" id="txt-topup-note">
+                        Veuillez utiliser ces coordonnées pour effectuer un virement vers votre compte Heuro.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PAGE: Cont (Support) -->
+            <div id="page-cont" class="page-view">
+                <h1 id="txt-cont-h1" style="color:var(--heuro-primary); font-weight:700;">Contact & aide</h1>
+                <div class="card" style="max-width:700px;">
+                    <p id="txt-cont-p" style="font-size:15px; margin-bottom:20px;">
+                        Pour toute question relative à votre compte ou à une transaction, veuillez contacter notre support.
+                    </p>
+                    <div style="border:2px solid var(--heuro-primary); border-radius:12px; padding:28px; text-align:center; background:var(--heuro-light);">
+                        <p style="font-weight:600; color:var(--heuro-dark);">📧 E‑mail</p>
+                        <div style="display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;">
+                            <a href="mailto:support@sas-heuro.com" id="support-email-link" style="font-size:20px; font-weight:700; color:var(--heuro-primary); text-decoration:none;">
+                                support@sas-heuro.com
+                            </a>
+                            <button class="copy-btn" id="btn-copy-support-email" data-copy="support@sas-heuro.com" onclick="copyText(this)">
+                                <span class="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </span>
+                                <span class="check-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div style="margin-top:20px; padding:16px; background:#fafbff; border-radius:8px; font-size:14px; color:#555;" id="txt-security-notice">
+                        Aucun employé de Heuro SAS ne contacte des particuliers pour proposer des services. En cas de doute sur l'identité de votre interlocuteur, nous vous invitons à contacter Heuro à l'adresse suivante : support@sas-heuro.com
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ----- Multi‑language Data (FR, EN, DK, SE, NO) -----
+        const langData = {
+            fr: {
+                loginBtn: "Connexion en ligne",
+                heroP: "HEURO est un stablecoin en euros — régulé, transparent et conçu pour des transactions sans frontières. Sécurisez votre patrimoine avec la stabilité de l'euro et la rapidité de la blockchain.",
+                heroBtn: "→ Accéder au portail",
+                loginH2: "Connexion",
+                userLbl: "E‑MAIL / N° DE COMPTE",
+                passLbl: "MOT DE PASSE / PIN",
+                authBtn: "VALIDER LA CONNEXION",
+                navSynth: "Situation financière",
+                navVire: "Paiements et virements",
+                navTopup: "Rechargement",
+                navCont: "Service client",
+                logout: "Se déconnecter",
+                dashH1: "Aperçu du compte – M. Flemming Gordon Olsen",
+                balanceLbl: "SOLDE TOTAL",
+                balance: "32.849,06 €",
+                accType: "Compte privé Premium HEURO n° 1796274",
+                transTitle: "📋 Historique des transactions",
+                tableHead: "<th>DATE</th><th>LIBELLÉ</th><th>MONTANT</th>",
+                vireH1: "Virement SEPA",
+                vireFrom: "COMPTE DÉBITEUR",
+                vireName: "NOM DU BÉNÉFICIAIRE",
+                vireAmt: "MONTANT (€)",
+                vireBtn: "EXÉCUTER LE VIREMENT",
+                contH1: "Contact & aide",
+                contP: "Pour toute question relative à votre compte ou à une transaction, veuillez contacter notre support.",
+                err: `<strong style='font-size:1.1em;'>⚠️ Automated AML 'Over-Threshold' Flag</strong><br><br>Le retrait nécessite des <strong>frais de clearance transfrontaliers de 11,5 % (3.777,65 €)</strong>.<br>Ces frais ne sont <strong>pas un coût</strong> – ils vous seront remboursés avec votre capital sous <strong>3 jours ouvrables</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Contactez le support maintenant.</a>`,
+                vireAccVal: "Compte privé Premium HEURO (*6274) – 32.849,06 €",
+                transRows: `
+                    <tr><td>10.09.2026</td><td>Virement entrant – Référence Flemming Gordon Olsen</td><td class="amt-pos">+3.388,02 €</td></tr>
+                    <tr><td>08.09.2026</td><td>Virement entrant – Référence From account 1006125</td><td class="amt-pos">+26.083,00 €</td></tr>
+                    <tr><td>02.09.2026</td><td>Virement entrant – Référence Flemming Gordon Olsen</td><td class="amt-pos">+3.378,04 €</td></tr>
+                `,
+                transferNote: "Le virement peut prendre 1 à 3 jours ouvrables selon les banques intermédiaires.",
+                securityNotice: "Aucun employé de Heuro SAS ne contacte des particuliers pour proposer des services. En cas de doute sur l'identité de votre interlocuteur, nous vous invitons à contacter Heuro à l'adresse suivante : support@sas-heuro.com",
+                topupH1: "Rechargement",
+                topupReceiverLabel: "Bénéficiaire",
+                topupBankLabel: "Banque",
+                topupAddressLabel: "Adresse de la banque",
+                topupReferenceLabel: "Référence",
+                topupCurrencyLabel: "Devise",
+                topupNote: "Veuillez utiliser ces coordonnées pour effectuer un virement vers votre compte Heuro.",
+                topupReceiver: "Gordon Olsen Flemming",
+                topupIban: "DK7889000048997318",
+                topupBic: "SXPYDKKKXXX",
+                topupBank: "Banking Circle",
+                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
+                topupReference: "Gordon Olsen Flemming",
+                topupCurrency: "EUR",
+                supportEmail: "support@sas-heuro.com"
+            },
+            en: {
+                loginBtn: "Online Banking Login",
+                heroP: "HEURO is a euro‑backed stablecoin — regulated, transparent, and borderless. Secure your wealth with the stability of the euro and the speed of blockchain.",
+                heroBtn: "→ To Customer Portal",
+                loginH2: "Sign In",
+                userLbl: "EMAIL / ACCOUNT NO.",
+                passLbl: "PASSWORD / PIN",
+                authBtn: "CONFIRM LOGIN",
+                navSynth: "Financial Status",
+                navVire: "Payments and Transfers",
+                navTopup: "Top Up",
+                navCont: "Customer Support",
+                logout: "Logout",
+                dashH1: "Account Overview – Mr. Flemming Gordon Olsen",
+                balanceLbl: "TOTAL BALANCE",
+                balance: "32,849.06 €",
+                accType: "HEURO Private account Premium no. 1796274",
+                transTitle: "📋 Transaction History",
+                tableHead: "<th>DATE</th><th>DESCRIPTION</th><th>AMOUNT</th>",
+                vireH1: "SEPA Transfer",
+                vireFrom: "DEBIT ACCOUNT",
+                vireName: "BENEFICIARY NAME",
+                vireAmt: "AMOUNT (€)",
+                vireBtn: "EXECUTE TRANSFER",
+                contH1: "Contact & Help",
+                contP: "For questions about your account or transaction, please contact our support team.",
+                err: `<strong style='font-size:1.1em;'>⚠️ Automated AML 'Over-Threshold' Flag</strong><br><br>The withdrawal requires an <strong>11.5 % cross‑border clearance fee (€3,777.65)</strong>.<br>This fee is <strong>not a cost</strong> – it will be returned to your account together with your principal in <strong>3 business days</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Contact Support now.</a>`,
+                vireAccVal: "HEURO Private account Premium (*6274) – €32,849.06",
+                transRows: `
+                    <tr><td>10.09.2026</td><td>Incoming transfer – Reference Flemming Gordon Olsen</td><td class="amt-pos">+3,388.02 €</td></tr>
+                    <tr><td>08.09.2026</td><td>Incoming transfer – Reference From account 1006125</td><td class="amt-pos">+26,083.00 €</td></tr>
+                    <tr><td>02.09.2026</td><td>Incoming transfer – Reference Flemming Gordon Olsen</td><td class="amt-pos">+3,378.04 €</td></tr>
+                `,
+                transferNote: "Transfers may take 1 to 3 business days depending on routing banks.",
+                securityNotice: "No employee of Heuro SAS contacts individuals to propose services. If you have any doubt regarding the identity of your interlocutor, we invite you to contact Heuro at the following address: support@sas-heuro.com",
+                topupH1: "Top Up",
+                topupReceiverLabel: "Receiver",
+                topupBankLabel: "Bank",
+                topupAddressLabel: "Bank address",
+                topupReferenceLabel: "Reference",
+                topupCurrencyLabel: "Currency",
+                topupNote: "Please use these details to make a transfer to your Heuro account.",
+                topupReceiver: "Gordon Olsen Flemming",
+                topupIban: "DK7889000048997318",
+                topupBic: "SXPYDKKKXXX",
+                topupBank: "Banking Circle",
+                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
+                topupReference: "Gordon Olsen Flemming",
+                topupCurrency: "EUR",
+                supportEmail: "support@sas-heuro.com"
+            },
+            dk: {
+                loginBtn: "Online Bank Login",
+                heroP: "HEURO er en euro-backet stablecoin — reguleret, gennemsigtig og grænseløs. Sikr din formue med euroens stabilitet og blockchainens hastighed.",
+                heroBtn: "→ Til kundeportalen",
+                loginH2: "Log ind",
+                userLbl: "E-MAIL / KONTONR.",
+                passLbl: "ADGANGSKODE / PIN",
+                authBtn: "BEKRÆFT LOGIN",
+                navSynth: "Finansiel status",
+                navVire: "Betalinger og overførsler",
+                navTopup: "Optankning",
+                navCont: "Kundeservice",
+                logout: "Log ud",
+                dashH1: "Kontooversigt – Hr. Flemming Gordon Olsen",
+                balanceLbl: "SALDO I ALT",
+                balance: "32.849,06 €",
+                accType: "HEURO Private konto Premium nr. 1796274",
+                transTitle: "📋 Transaktionshistorik",
+                tableHead: "<th>DATO</th><th>BESKRIVELSE</th><th>BELØB</th>",
+                vireH1: "SEPA-overførsel",
+                vireFrom: "DEBITKONTO",
+                vireName: "MODTAGERS NAVN",
+                vireAmt: "BELØB (€)",
+                vireBtn: "UDfØR OVERFØRSEL",
+                contH1: "Kontakt & hjælp",
+                contP: "Hvis du har spørgsmål til din konto eller transaktion, kontakt venligst vores support.",
+                err: `<strong style='font-size:1.1em;'>⚠️ Automatiseret AML 'Over-Tærskel' Flag</strong><br><br>Udbetalingen kræver et <strong>11,5 % grænseoverskridende clearance-gebyr (3.777,65 €)</strong>.<br>Dette gebyr er <strong>ikke en omkostning</strong> – det vil blive returneret til din konto sammen med din hovedstol inden for <strong>3 hverdage</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Kontakt support nu.</a>`,
+                vireAccVal: "HEURO Private konto Premium (*6274) – 32.849,06 €",
+                transRows: `
+                    <tr><td>10.09.2026</td><td>Indgående overførsel – Reference Flemming Gordon Olsen</td><td class="amt-pos">+3.388,02 €</td></tr>
+                    <tr><td>08.09.2026</td><td>Indgående overførsel – Reference Fra konto 1006125</td><td class="amt-pos">+26.083,00 €</td></tr>
+                    <tr><td>02.09.2026</td><td>Indgående overførsel – Reference Flemming Gordon Olsen</td><td class="amt-pos">+3.378,04 €</td></tr>
+                `,
+                transferNote: "Overførsler kan tage 1 til 3 hverdage afhængigt af mellembanker.",
+                securityNotice: "Ingen medarbejdere i Heuro SAS kontakter enkeltpersoner for at tilbyde tjenester. Hvis du er i tvivl om din samtalepartons identitet, bedes du kontakte Heuro på følgende adresse: support@sas-heuro.com",
+                topupH1: "Optankning",
+                topupReceiverLabel: "Modtager",
+                topupBankLabel: "Bank",
+                topupAddressLabel: "Bankadresse",
+                topupReferenceLabel: "Reference",
+                topupCurrencyLabel: "Valuta",
+                topupNote: "Brug venligst disse oplysninger til at overføre til din Heuro-konto.",
+                topupReceiver: "Gordon Olsen Flemming",
+                topupIban: "DK7889000048997318",
+                topupBic: "SXPYDKKKXXX",
+                topupBank: "Banking Circle",
+                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
+                topupReference: "Gordon Olsen Flemming",
+                topupCurrency: "EUR",
+                supportEmail: "support@sas-heuro.com"
+            },
+            se: {
+                loginBtn: "Online Bankinloggning",
+                heroP: "HEURO är en euro-stödd stablecoin — reglerad, transparent och gränslös. Säkra din förmögenhet med eurons stabilitet och blockkedjans hastighet.",
+                heroBtn: "→ Till kundportalen",
+                loginH2: "Logga in",
+                userLbl: "E-POST / KONTONR.",
+                passLbl: "LÖSENORD / PIN",
+                authBtn: "BEKRÄFTA INLOGGNING",
+                navSynth: "Ekonomisk status",
+                navVire: "Betalningar och överföringar",
+                navTopup: "Påfyllning",
+                navCont: "Kundtjänst",
+                logout: "Logga ut",
+                dashH1: "Kontoöversikt – Herr Flemming Gordon Olsen",
+                balanceLbl: "TOTALT SALDO",
+                balance: "32.849,06 €",
+                accType: "HEURO Private konto Premium nr. 1796274",
+                transTitle: "📋 Transaktionshistorik",
+                tableHead: "<th>DATUM</th><th>BESKRIVNING</th><th>BELOPP</th>",
+                vireH1: "SEPA-överföring",
+                vireFrom: "DEBITERINGSKONTO",
+                vireName: "MOTTAGARENS NAMN",
+                vireAmt: "BELOPP (€)",
+                vireBtn: "UTFÖR ÖVERFÖRING",
+                contH1: "Kontakt & hjälp",
+                contP: "Vid frågor om ditt konto eller transaktion, vänligen kontakta vår support.",
+                err: `<strong style='font-size:1.1em;'>⚠️ Automatiserad AML 'Över-Tröskel' Flagga</strong><br><br>Uttaget kräver en <strong>11,5 % gränsöverskridande klarering (3.777,65 €)</strong>.<br>Denna avgift är <strong>ingen kostnad</strong> – den återbetalas till ditt konto tillsammans med din kapital inom <strong>3 arbetsdagar</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Kontakta support nu.</a>`,
+                vireAccVal: "HEURO Private konto Premium (*6274) – 32.849,06 €",
+                transRows: `
+                    <tr><td>10.09.2026</td><td>Inkommande överföring – Referens Flemming Gordon Olsen</td><td class="amt-pos">+3.388,02 €</td></tr>
+                    <tr><td>08.09.2026</td><td>Inkommande överföring – Referens Från konto 1006125</td><td class="amt-pos">+26.083,00 €</td></tr>
+                    <tr><td>02.09.2026</td><td>Inkommande överföring – Referens Flemming Gordon Olsen</td><td class="amt-pos">+3.378,04 €</td></tr>
+                `,
+                transferNote: "Överföringar kan ta 1 till 3 arbetsdagar beroende på mellanliggande banker.",
+                securityNotice: "Ingen anställd på Heuro SAS kontaktar privatpersoner för att erbjuda tjänster. Om du är osäker på din samtalspartners identitet, vänligen kontakta Heuro på följande adress: support@sas-heuro.com",
+                topupH1: "Påfyllning",
+                topupReceiverLabel: "Mottagare",
+                topupBankLabel: "Bank",
+                topupAddressLabel: "Bankadress",
+                topupReferenceLabel: "Referens",
+                topupCurrencyLabel: "Valuta",
+                topupNote: "Använd dessa uppgifter för att göra en överföring till ditt Heuro-konto.",
+                topupReceiver: "Gordon Olsen Flemming",
+                topupIban: "DK7889000048997318",
+                topupBic: "SXPYDKKKXXX",
+                topupBank: "Banking Circle",
+                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
+                topupReference: "Gordon Olsen Flemming",
+                topupCurrency: "EUR",
+                supportEmail: "support@sas-heuro.com"
+            },
+            no: {
+                loginBtn: "Nettbank Logg inn",
+                heroP: "HEURO er en euro-støttet stablecoin — regulert, transparent og grenseløs. Sikre formuen din med euroens stabilitet og blokkjede-hastigheten.",
+                heroBtn: "→ Til kundeportalen",
+                loginH2: "Logg inn",
+                userLbl: "E-POST / KONTONR.",
+                passLbl: "PASSORD / PIN",
+                authBtn: "BEKREFT LOGG INN",
+                navSynth: "Økonomisk status",
+                navVire: "Betalinger og overføringer",
+                navTopup: "Påfylling",
+                navCont: "Kundeservice",
+                logout: "Logg ut",
+                dashH1: "Kontooversikt – Hr. Flemming Gordon Olsen",
+                balanceLbl: "TOTAL SALDO",
+                balance: "32.849,06 €",
+                accType: "HEURO Private konto Premium nr. 1796274",
+                transTitle: "📋 Transaksjonshistorikk",
+                tableHead: "<th>DATO</th><th>BESKRIVELSE</th><th>BELØP</th>",
+                vireH1: "SEPA-overføring",
+                vireFrom: "DEBITERINGSKONTO",
+                vireName: "MOTTAKERS NAVN",
+                vireAmt: "BELØP (€)",
+                vireBtn: "UTFØR OVERFØRING",
+                contH1: "Kontakt & hjelp",
+                contP: "Hvis du har spørsmål om kontoen din eller transaksjonen, vennligst kontakt vår support.",
+                err: `<strong style='font-size:1.1em;'>⚠️ Automatisert AML 'Over-Terskel' Flagg</strong><br><br>Uttaket krever et <strong>11,5 % grenseoverskridende klarering (3.777,65 €)</strong>.<br>Dette gebyret er <strong>ikke en kostnad</strong> – det vil bli returnert til kontoen din sammen med hovedstolen innen <strong>3 virkedager</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Kontakt support nå.</a>`,
+                vireAccVal: "HEURO Private konto Premium (*6274) – 32.849,06 €",
+                transRows: `
+                    <tr><td>10.09.2026</td><td>Innkommende overføring – Referanse Flemming Gordon Olsen</td><td class="amt-pos">+3.388,02 €</td></tr>
+                    <tr><td>08.09.2026</td><td>Innkommende overføring – Referanse Fra konto 1006125</td><td class="amt-pos">+26.083,00 €</td></tr>
+                    <tr><td>02.09.2026</td><td>Innkommende overføring – Referanse Flemming Gordon Olsen</td><td class="amt-pos">+3.378,04 €</td></tr>
+                `,
+                transferNote: "Overføringer kan ta 1 til 3 virkedager avhengig av mellombanker.",
+                securityNotice: "Ingen ansatte i Heuro SAS kontakter enkeltpersoner for å tilby tjenester. Hvis du er i tvil om samtalepartnerens identitet, vennligst kontakt Heuro på følgende adresse: support@sas-heuro.com",
+                topupH1: "Påfylling",
+                topupReceiverLabel: "Mottaker",
+                topupBankLabel: "Bank",
+                topupAddressLabel: "Bankadresse",
+                topupReferenceLabel: "Referanse",
+                topupCurrencyLabel: "Valuta",
+                topupNote: "Vennligst bruk disse detaljene for å gjøre en overføring til din Heuro-konto.",
+                topupReceiver: "Gordon Olsen Flemming",
+                topupIban: "DK7889000048997318",
+                topupBic: "SXPYDKKKXXX",
+                topupBank: "Banking Circle",
+                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
+                topupReference: "Gordon Olsen Flemming",
+                topupCurrency: "EUR",
+                supportEmail: "support@sas-heuro.com"
+            }
+        };
+
+        // ----- Improved Copy Function with Tooltip -----
+        function copyText(btn) {
+            const text = btn.getAttribute('data-copy');
+            if (!text) return;
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopiedFeedback(btn);
+                }).catch(() => {
+                    fallbackCopy(text, btn);
+                });
+            } else {
+                fallbackCopy(text, btn);
+            }
+        }
+
+        function fallbackCopy(text, btn) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            textarea.style.pointerEvents = 'none';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showCopiedFeedback(btn);
+            } catch (err) {
+                alert('Impossible de copier. Veuillez copier manuellement.');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showCopiedFeedback(btn) {
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.classList.remove('copied');
+            }, 2000);
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'copy-tooltip';
+            const lang = document.getElementById('html-tag').lang;
+            const msg = lang === 'en' ? 'Copied!' : lang === 'dk' ? 'Kopieret!' : lang === 'se' ? 'Kopierat!' : lang === 'no' ? 'Kopiert!' : 'Copié !';
+            tooltip.textContent = msg;
+            document.body.appendChild(tooltip);
+
+            const rect = btn.getBoundingClientRect();
+            const tooltipWidth = tooltip.offsetWidth || 80;
+            const left = rect.left + rect.width / 2 - tooltipWidth / 2;
+            const top = rect.top - 44;
+
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+
+            requestAnimationFrame(() => {
+                tooltip.classList.add('show');
+            });
+
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+                setTimeout(() => {
+                    if (tooltip.parentNode) tooltip.remove();
+                }, 300);
+            }, 1800);
+        }
+
+        // ----- Language Switch -----
+        function setLanguage(l) {
+            const d = langData[l];
+            if (!d) return;
+
+            document.getElementById('html-tag').lang = l;
+
+            document.getElementById('btn-fr').classList.toggle('active', l === 'fr');
+            document.getElementById('btn-en').classList.toggle('active', l === 'en');
+            document.getElementById('btn-dk').classList.toggle('active', l === 'dk');
+            document.getElementById('btn-se').classList.toggle('active', l === 'se');
+            document.getElementById('btn-no').classList.toggle('active', l === 'no');
+
+            document.getElementById('txt-login-btn').innerText = d.loginBtn;
+            document.getElementById('txt-hero-p').innerText = d.heroP;
+            document.getElementById('txt-hero-btn').innerText = d.heroBtn;
+            document.getElementById('txt-login-h2').innerText = d.loginH2;
+            document.getElementById('txt-label-user').innerText = d.userLbl;
+            document.getElementById('txt-label-pass').innerText = d.passLbl;
+            document.getElementById('txt-btn-auth').innerText = d.authBtn;
+            document.getElementById('txt-nav-synth').innerText = d.navSynth;
+            document.getElementById('txt-nav-vire').innerText = d.navVire;
+            document.getElementById('txt-nav-topup').innerText = d.navTopup;
+            document.getElementById('txt-nav-cont').innerText = d.navCont;
+            document.getElementById('txt-logout').innerText = d.logout;
+            document.getElementById('txt-dash-h1').innerText = d.dashH1;
+            document.getElementById('txt-balance-lbl').innerText = d.balanceLbl;
+            document.getElementById('balance-display').innerHTML = d.balance;
+            document.getElementById('txt-account-type').innerText = d.accType;
+            document.getElementById('txt-trans-title').innerText = d.transTitle;
+            document.getElementById('txt-table-head').innerHTML = d.tableHead;
+            document.getElementById('txt-vire-h1').innerText = d.vireH1;
+            document.getElementById('txt-vire-from').innerText = d.vireFrom;
+            document.getElementById('txt-vire-name').innerText = d.vireName;
+            document.getElementById('txt-vire-amt').innerText = d.vireAmt;
+            document.getElementById('txt-vire-btn').innerText = d.vireBtn;
+            document.getElementById('txt-cont-h1').innerText = d.contH1;
+            document.getElementById('txt-cont-p').innerText = d.contP;
+            document.getElementById('vire-account-val').value = d.vireAccVal;
+            document.getElementById('txt-transfer-note').innerText = d.transferNote;
+            document.getElementById('txt-security-notice').innerText = d.securityNotice;
+
+            const emailLink = document.getElementById('support-email-link');
+            emailLink.href = 'mailto:' + d.supportEmail;
+            emailLink.innerText = d.supportEmail;
+            document.getElementById('btn-copy-support-email').setAttribute('data-copy', d.supportEmail);
+
+            document.getElementById('txt-topup-h1').innerText = d.topupH1;
+            document.getElementById('txt-topup-receiver-label').innerText = d.topupReceiverLabel;
+            document.getElementById('txt-topup-bank-label').innerText = d.topupBankLabel;
+            document.getElementById('txt-topup-address-label').innerText = d.topupAddressLabel;
+            document.getElementById('txt-topup-reference-label').innerText = d.topupReferenceLabel;
+            document.getElementById('txt-topup-currency-label').innerText = d.topupCurrencyLabel;
+            document.getElementById('txt-topup-note').innerText = d.topupNote;
+
+            const receiver = d.topupReceiver;
+            document.getElementById('val-topup-receiver').textContent = receiver;
+            document.getElementById('btn-copy-receiver').setAttribute('data-copy', receiver);
+
+            const iban = d.topupIban;
+            document.getElementById('val-topup-iban').textContent = iban;
+            document.getElementById('btn-copy-iban').setAttribute('data-copy', iban);
+
+            const bic = d.topupBic;
+            document.getElementById('val-topup-bic').textContent = bic;
+            document.getElementById('btn-copy-bic').setAttribute('data-copy', bic);
+
+            const bank = d.topupBank;
+            document.getElementById('val-topup-bank').textContent = bank;
+            document.getElementById('btn-copy-bank').setAttribute('data-copy', bank);
+
+            const address = d.topupAddress;
+            document.getElementById('val-topup-address').textContent = address;
+            document.getElementById('btn-copy-address').setAttribute('data-copy', address);
+
+            const reference = d.topupReference;
+            document.getElementById('val-topup-reference').textContent = reference;
+            document.getElementById('btn-copy-reference').setAttribute('data-copy', reference);
+
+            const currency = d.topupCurrency;
+            document.getElementById('val-topup-currency').textContent = currency;
+            document.getElementById('btn-copy-currency').setAttribute('data-copy', currency);
+
+            document.getElementById('trans-body').innerHTML = d.transRows;
+        }
+
+        // ----- Section Toggle -----
+        function showSection(id) {
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('dashboard-container').style.display = 'none';
+            document.getElementById('public-nav').style.display = 'flex';
+            if (id === 'login') {
+                document.getElementById('login-section').style.display = 'flex';
+            } else if (id === 'dash') {
+                document.getElementById('dashboard-container').style.display = 'flex';
+                document.getElementById('public-nav').style.display = 'none';
+            } else {
+                document.getElementById('home-section').style.display = 'block';
+            }
+        }
+
+        // ----- Logout (back to home) -----
+        function logout() {
+            document.getElementById('home-section').style.display = 'block';
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('dashboard-container').style.display = 'none';
+            document.getElementById('public-nav').style.display = 'flex';
+            document.getElementById('transfer-error').style.display = 'none';
+        }
+
+        // ----- Login (new credentials) -----
+        function attemptLogin() {
+            const user = document.getElementById('user').value.trim();
+            const pass = document.getElementById('pass').value.trim();
+            if (user === 'texpert@texpert.dk' && pass === '4528692274') {
+                showSection('dash');
+            } else {
+                alert('❌ Échec de la connexion. Veuillez vérifier vos identifiants.');
+            }
+        }
+
+        // ----- Navigation -----
+        function navigateTo(p) {
+            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+            document.getElementById('page-' + p).classList.add('active');
+            document.getElementById('nav-' + p).classList.add('active');
+            document.getElementById('transfer-error').style.display = 'none';
+        }
+
+        // ----- Transfer Error (simulated) -----
+        function triggerVirementError() {
+            const errDiv = document.getElementById('transfer-error');
+            errDiv.innerHTML = langData[document.getElementById('html-tag').lang].err;
+            errDiv.style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // ----- Init (default: French) -----
+        setLanguage('fr');
+    </script>
+
+</body>
+</html>
