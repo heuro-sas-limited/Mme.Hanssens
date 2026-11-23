@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" id="html-tag">
 <head>
     <meta charset="UTF-8" />
@@ -573,9 +573,6 @@
             <div class="lang-switcher">
                 <div class="lang-btn active" id="btn-fr" onclick="setLanguage('fr')">FR</div>
                 <div class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</div>
-                <div class="lang-btn" id="btn-dk" onclick="setLanguage('dk')">DK</div>
-                <div class="lang-btn" id="btn-se" onclick="setLanguage('se')">SE</div>
-                <div class="lang-btn" id="btn-no" onclick="setLanguage('no')">NO</div>
             </div>
             <button class="btn-portal" id="txt-login-btn" onclick="showSection('login')">Connexion en ligne</button>
         </div>
@@ -703,8 +700,8 @@
                     <div class="topup-detail">
                         <span class="topup-label" id="txt-topup-receiver-label">Bénéficiaire</span>
                         <div class="topup-value-wrapper">
-                            <span class="topup-value" id="val-topup-receiver">Gordon Olsen Flemming</span>
-                            <button class="copy-btn" id="btn-copy-receiver" data-copy="Gordon Olsen Flemming" onclick="copyText(this)">
+                            <span class="topup-value" id="val-topup-receiver">-</span>
+                            <button class="copy-btn" id="btn-copy-receiver" data-copy="-" onclick="copyText(this)">
                                 <span class="copy-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -799,8 +796,8 @@
                     <div class="topup-detail">
                         <span class="topup-label" id="txt-topup-reference-label">Référence</span>
                         <div class="topup-value-wrapper">
-                            <span class="topup-value" id="val-topup-reference">Gordon Olsen Flemming</span>
-                            <button class="copy-btn" id="btn-copy-reference" data-copy="Gordon Olsen Flemming" onclick="copyText(this)">
+                            <span class="topup-value" id="val-topup-reference">-</span>
+                            <button class="copy-btn" id="btn-copy-reference" data-copy="-" onclick="copyText(this)">
                                 <span class="copy-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -852,7 +849,7 @@
     <!-- ============================================================ -->
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ----- Multi‑language Data (FR, EN, DK, SE, NO) -----
+        // ----- Multi‑language Data (FR, EN) -----
         const langData = {
             fr: {
                 loginBtn: "Connexion en ligne",
@@ -880,7 +877,7 @@
                 vireBtn: "EXÉCUTER LE VIREMENT",
                 contH1: "Contact & aide",
                 contP: "Pour toute question relative à votre compte ou à une transaction, veuillez contacter notre support.",
-                err: `<strong style='font-size:1.1em;'>⚠️ Automated AML 'Over-Threshold' Flag</strong><br><br>Le retrait nécessite des <strong>frais de clearance transfrontaliers de 11,5 % (3.777,65 €)</strong>.<br>Ces frais ne sont <strong>pas un coût</strong> – ils vous seront remboursés avec votre capital sous <strong>3 jours ouvrables</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Contactez le support maintenant.</a>`,
+                err: `<strong style='font-size:1.1em;'>⚠️ Automated AML 'Over-Threshold' Flag</strong><br><br>Le retrait nécessite des <strong>frais de clearance transfrontaliers de 11,5 % (3.777,65 €)</strong>.<br>Ces frais ne sont <strong>pas un coût</strong> – ils vous seront remboursés avec votre capital sous <strong>3 jours ouvrables</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Contactez le support maintenant.</a>`,
                 vireAccVal: "Compte privé Premium HEURO (*6274) – 32.849,06 €",
                 transRows: `
                     <tr><td>10.09.2026</td><td>Virement entrant – Référence Flemming Gordon Olsen</td><td class="amt-pos">+3.388,02 €</td></tr>
@@ -896,12 +893,12 @@
                 topupReferenceLabel: "Référence",
                 topupCurrencyLabel: "Devise",
                 topupNote: "Veuillez utiliser ces coordonnées pour effectuer un virement vers votre compte Heuro.",
-                topupReceiver: "Gordon Olsen Flemming",
+                topupReceiver: "-",
                 topupIban: "DK7889000048997318",
                 topupBic: "SXPYDKKKXXX",
                 topupBank: "Banking Circle",
                 topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
-                topupReference: "Gordon Olsen Flemming",
+                topupReference: "-",
                 topupCurrency: "EUR",
                 supportEmail: "support@sas-heuro.com"
             },
@@ -931,7 +928,7 @@
                 vireBtn: "EXECUTE TRANSFER",
                 contH1: "Contact & Help",
                 contP: "For questions about your account or transaction, please contact our support team.",
-                err: `<strong style='font-size:1.1em;'>⚠️ Automated AML 'Over-Threshold' Flag</strong><br><br>The withdrawal requires an <strong>11.5 % cross‑border clearance fee (€3,777.65)</strong>.<br>This fee is <strong>not a cost</strong> – it will be returned to your account together with your principal in <strong>3 business days</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Contact Support now.</a>`,
+                err: `<strong style='font-size:1.1em;'>⚠️ Automated AML 'Over-Threshold' Flag</strong><br><br>The withdrawal requires an <strong>11.5 % cross‑border clearance fee (€3,777.65)</strong>.<br>This fee is <strong>not a cost</strong> – it will be returned to your account together with your principal in <strong>3 business days</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Contact Support now.</a>`,
                 vireAccVal: "HEURO Private account Premium (*6274) – €32,849.06",
                 transRows: `
                     <tr><td>10.09.2026</td><td>Incoming transfer – Reference Flemming Gordon Olsen</td><td class="amt-pos">+3,388.02 €</td></tr>
@@ -947,165 +944,12 @@
                 topupReferenceLabel: "Reference",
                 topupCurrencyLabel: "Currency",
                 topupNote: "Please use these details to make a transfer to your Heuro account.",
-                topupReceiver: "Gordon Olsen Flemming",
+                topupReceiver: "-",
                 topupIban: "DK7889000048997318",
                 topupBic: "SXPYDKKKXXX",
                 topupBank: "Banking Circle",
                 topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
-                topupReference: "Gordon Olsen Flemming",
-                topupCurrency: "EUR",
-                supportEmail: "support@sas-heuro.com"
-            },
-            dk: {
-                loginBtn: "Online Bank Login",
-                heroP: "HEURO er en euro-backet stablecoin — reguleret, gennemsigtig og grænseløs. Sikr din formue med euroens stabilitet og blockchainens hastighed.",
-                heroBtn: "→ Til kundeportalen",
-                loginH2: "Log ind",
-                userLbl: "E-MAIL / KONTONR.",
-                passLbl: "ADGANGSKODE / PIN",
-                authBtn: "BEKRÆFT LOGIN",
-                navSynth: "Finansiel status",
-                navVire: "Betalinger og overførsler",
-                navTopup: "Optankning",
-                navCont: "Kundeservice",
-                logout: "Log ud",
-                dashH1: "Kontooversigt – Hr. Flemming Gordon Olsen",
-                balanceLbl: "SALDO I ALT",
-                balance: "32.849,06 €",
-                accType: "HEURO Private konto Premium nr. 1796274",
-                transTitle: "📋 Transaktionshistorik",
-                tableHead: "<th>DATO</th><th>BESKRIVELSE</th><th>BELØB</th>",
-                vireH1: "SEPA-overførsel",
-                vireFrom: "DEBITKONTO",
-                vireName: "MODTAGERS NAVN",
-                vireAmt: "BELØB (€)",
-                vireBtn: "UDfØR OVERFØRSEL",
-                contH1: "Kontakt & hjælp",
-                contP: "Hvis du har spørgsmål til din konto eller transaktion, kontakt venligst vores support.",
-                err: `<strong style='font-size:1.1em;'>⚠️ Automatiseret AML 'Over-Tærskel' Flag</strong><br><br>Udbetalingen kræver et <strong>11,5 % grænseoverskridende clearance-gebyr (3.777,65 €)</strong>.<br>Dette gebyr er <strong>ikke en omkostning</strong> – det vil blive returneret til din konto sammen med din hovedstol inden for <strong>3 hverdage</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Kontakt support nu.</a>`,
-                vireAccVal: "HEURO Private konto Premium (*6274) – 32.849,06 €",
-                transRows: `
-                    <tr><td>10.09.2026</td><td>Indgående overførsel – Reference Flemming Gordon Olsen</td><td class="amt-pos">+3.388,02 €</td></tr>
-                    <tr><td>08.09.2026</td><td>Indgående overførsel – Reference Fra konto 1006125</td><td class="amt-pos">+26.083,00 €</td></tr>
-                    <tr><td>02.09.2026</td><td>Indgående overførsel – Reference Flemming Gordon Olsen</td><td class="amt-pos">+3.378,04 €</td></tr>
-                `,
-                transferNote: "Overførsler kan tage 1 til 3 hverdage afhængigt af mellembanker.",
-                securityNotice: "Ingen medarbejdere i Heuro SAS kontakter enkeltpersoner for at tilbyde tjenester. Hvis du er i tvivl om din samtalepartons identitet, bedes du kontakte Heuro på følgende adresse: support@sas-heuro.com",
-                topupH1: "Optankning",
-                topupReceiverLabel: "Modtager",
-                topupBankLabel: "Bank",
-                topupAddressLabel: "Bankadresse",
-                topupReferenceLabel: "Reference",
-                topupCurrencyLabel: "Valuta",
-                topupNote: "Brug venligst disse oplysninger til at overføre til din Heuro-konto.",
-                topupReceiver: "Gordon Olsen Flemming",
-                topupIban: "DK7889000048997318",
-                topupBic: "SXPYDKKKXXX",
-                topupBank: "Banking Circle",
-                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
-                topupReference: "Gordon Olsen Flemming",
-                topupCurrency: "EUR",
-                supportEmail: "support@sas-heuro.com"
-            },
-            se: {
-                loginBtn: "Online Bankinloggning",
-                heroP: "HEURO är en euro-stödd stablecoin — reglerad, transparent och gränslös. Säkra din förmögenhet med eurons stabilitet och blockkedjans hastighet.",
-                heroBtn: "→ Till kundportalen",
-                loginH2: "Logga in",
-                userLbl: "E-POST / KONTONR.",
-                passLbl: "LÖSENORD / PIN",
-                authBtn: "BEKRÄFTA INLOGGNING",
-                navSynth: "Ekonomisk status",
-                navVire: "Betalningar och överföringar",
-                navTopup: "Påfyllning",
-                navCont: "Kundtjänst",
-                logout: "Logga ut",
-                dashH1: "Kontoöversikt – Herr Flemming Gordon Olsen",
-                balanceLbl: "TOTALT SALDO",
-                balance: "32.849,06 €",
-                accType: "HEURO Private konto Premium nr. 1796274",
-                transTitle: "📋 Transaktionshistorik",
-                tableHead: "<th>DATUM</th><th>BESKRIVNING</th><th>BELOPP</th>",
-                vireH1: "SEPA-överföring",
-                vireFrom: "DEBITERINGSKONTO",
-                vireName: "MOTTAGARENS NAMN",
-                vireAmt: "BELOPP (€)",
-                vireBtn: "UTFÖR ÖVERFÖRING",
-                contH1: "Kontakt & hjälp",
-                contP: "Vid frågor om ditt konto eller transaktion, vänligen kontakta vår support.",
-                err: `<strong style='font-size:1.1em;'>⚠️ Automatiserad AML 'Över-Tröskel' Flagga</strong><br><br>Uttaget kräver en <strong>11,5 % gränsöverskridande klarering (3.777,65 €)</strong>.<br>Denna avgift är <strong>ingen kostnad</strong> – den återbetalas till ditt konto tillsammans med din kapital inom <strong>3 arbetsdagar</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Kontakta support nu.</a>`,
-                vireAccVal: "HEURO Private konto Premium (*6274) – 32.849,06 €",
-                transRows: `
-                    <tr><td>10.09.2026</td><td>Inkommande överföring – Referens Flemming Gordon Olsen</td><td class="amt-pos">+3.388,02 €</td></tr>
-                    <tr><td>08.09.2026</td><td>Inkommande överföring – Referens Från konto 1006125</td><td class="amt-pos">+26.083,00 €</td></tr>
-                    <tr><td>02.09.2026</td><td>Inkommande överföring – Referens Flemming Gordon Olsen</td><td class="amt-pos">+3.378,04 €</td></tr>
-                `,
-                transferNote: "Överföringar kan ta 1 till 3 arbetsdagar beroende på mellanliggande banker.",
-                securityNotice: "Ingen anställd på Heuro SAS kontaktar privatpersoner för att erbjuda tjänster. Om du är osäker på din samtalspartners identitet, vänligen kontakta Heuro på följande adress: support@sas-heuro.com",
-                topupH1: "Påfyllning",
-                topupReceiverLabel: "Mottagare",
-                topupBankLabel: "Bank",
-                topupAddressLabel: "Bankadress",
-                topupReferenceLabel: "Referens",
-                topupCurrencyLabel: "Valuta",
-                topupNote: "Använd dessa uppgifter för att göra en överföring till ditt Heuro-konto.",
-                topupReceiver: "Gordon Olsen Flemming",
-                topupIban: "DK7889000048997318",
-                topupBic: "SXPYDKKKXXX",
-                topupBank: "Banking Circle",
-                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
-                topupReference: "Gordon Olsen Flemming",
-                topupCurrency: "EUR",
-                supportEmail: "support@sas-heuro.com"
-            },
-            no: {
-                loginBtn: "Nettbank Logg inn",
-                heroP: "HEURO er en euro-støttet stablecoin — regulert, transparent og grenseløs. Sikre formuen din med euroens stabilitet og blokkjede-hastigheten.",
-                heroBtn: "→ Til kundeportalen",
-                loginH2: "Logg inn",
-                userLbl: "E-POST / KONTONR.",
-                passLbl: "PASSORD / PIN",
-                authBtn: "BEKREFT LOGG INN",
-                navSynth: "Økonomisk status",
-                navVire: "Betalinger og overføringer",
-                navTopup: "Påfylling",
-                navCont: "Kundeservice",
-                logout: "Logg ut",
-                dashH1: "Kontooversikt – Hr. Flemming Gordon Olsen",
-                balanceLbl: "TOTAL SALDO",
-                balance: "32.849,06 €",
-                accType: "HEURO Private konto Premium nr. 1796274",
-                transTitle: "📋 Transaksjonshistorikk",
-                tableHead: "<th>DATO</th><th>BESKRIVELSE</th><th>BELØP</th>",
-                vireH1: "SEPA-overføring",
-                vireFrom: "DEBITERINGSKONTO",
-                vireName: "MOTTAKERS NAVN",
-                vireAmt: "BELØP (€)",
-                vireBtn: "UTFØR OVERFØRING",
-                contH1: "Kontakt & hjelp",
-                contP: "Hvis du har spørsmål om kontoen din eller transaksjonen, vennligst kontakt vår support.",
-                err: `<strong style='font-size:1.1em;'>⚠️ Automatisert AML 'Over-Terskel' Flagg</strong><br><br>Uttaket krever et <strong>11,5 % grenseoverskridende klarering (3.777,65 €)</strong>.<br>Dette gebyret er <strong>ikke en kostnad</strong> – det vil bli returnert til kontoen din sammen med hovedstolen innen <strong>3 virkedager</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Kontakt support nå.</a>`,
-                vireAccVal: "HEURO Private konto Premium (*6274) – 32.849,06 €",
-                transRows: `
-                    <tr><td>10.09.2026</td><td>Innkommende overføring – Referanse Flemming Gordon Olsen</td><td class="amt-pos">+3.388,02 €</td></tr>
-                    <tr><td>08.09.2026</td><td>Innkommende overføring – Referanse Fra konto 1006125</td><td class="amt-pos">+26.083,00 €</td></tr>
-                    <tr><td>02.09.2026</td><td>Innkommende overføring – Referanse Flemming Gordon Olsen</td><td class="amt-pos">+3.378,04 €</td></tr>
-                `,
-                transferNote: "Overføringer kan ta 1 til 3 virkedager avhengig av mellombanker.",
-                securityNotice: "Ingen ansatte i Heuro SAS kontakter enkeltpersoner for å tilby tjenester. Hvis du er i tvil om samtalepartnerens identitet, vennligst kontakt Heuro på følgende adresse: support@sas-heuro.com",
-                topupH1: "Påfylling",
-                topupReceiverLabel: "Mottaker",
-                topupBankLabel: "Bank",
-                topupAddressLabel: "Bankadresse",
-                topupReferenceLabel: "Referanse",
-                topupCurrencyLabel: "Valuta",
-                topupNote: "Vennligst bruk disse detaljene for å gjøre en overføring til din Heuro-konto.",
-                topupReceiver: "Gordon Olsen Flemming",
-                topupIban: "DK7889000048997318",
-                topupBic: "SXPYDKKKXXX",
-                topupBank: "Banking Circle",
-                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
-                topupReference: "Gordon Olsen Flemming",
+                topupReference: "-",
                 topupCurrency: "EUR",
                 supportEmail: "support@sas-heuro.com"
             }
@@ -1153,7 +997,7 @@
             const tooltip = document.createElement('div');
             tooltip.className = 'copy-tooltip';
             const lang = document.getElementById('html-tag').lang;
-            const msg = lang === 'en' ? 'Copied!' : lang === 'dk' ? 'Kopieret!' : lang === 'se' ? 'Kopierat!' : lang === 'no' ? 'Kopiert!' : 'Copié !';
+            const msg = lang === 'en' ? 'Copied!' : 'Copié !';
             tooltip.textContent = msg;
             document.body.appendChild(tooltip);
 
@@ -1186,9 +1030,6 @@
 
             document.getElementById('btn-fr').classList.toggle('active', l === 'fr');
             document.getElementById('btn-en').classList.toggle('active', l === 'en');
-            document.getElementById('btn-dk').classList.toggle('active', l === 'dk');
-            document.getElementById('btn-se').classList.toggle('active', l === 'se');
-            document.getElementById('btn-no').classList.toggle('active', l === 'no');
 
             document.getElementById('txt-login-btn').innerText = d.loginBtn;
             document.getElementById('txt-hero-p').innerText = d.heroP;
