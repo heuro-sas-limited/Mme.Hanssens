@@ -716,8 +716,8 @@
                     <div class="topup-detail">
                         <span class="topup-label">IBAN</span>
                         <div class="topup-value-wrapper">
-                            <span class="topup-value" id="val-topup-iban">DK7889000048997318</span>
-                            <button class="copy-btn" id="btn-copy-iban" data-copy="DK7889000048997318" onclick="copyText(this)">
+                            <span class="topup-value" id="val-topup-iban">-</span>
+                            <button class="copy-btn" id="btn-copy-iban" data-copy="-" onclick="copyText(this)">
                                 <span class="copy-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -732,8 +732,8 @@
                     <div class="topup-detail">
                         <span class="topup-label">BIC/SWIFT</span>
                         <div class="topup-value-wrapper">
-                            <span class="topup-value" id="val-topup-bic">SXPYDKKKXXX</span>
-                            <button class="copy-btn" id="btn-copy-bic" data-copy="SXPYDKKKXXX" onclick="copyText(this)">
+                            <span class="topup-value" id="val-topup-bic">-</span>
+                            <button class="copy-btn" id="btn-copy-bic" data-copy="-" onclick="copyText(this)">
                                 <span class="copy-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -748,8 +748,8 @@
                     <div class="topup-detail">
                         <span class="topup-label" id="txt-topup-bank-label">Banque</span>
                         <div class="topup-value-wrapper">
-                            <span class="topup-value" id="val-topup-bank">Banking Circle</span>
-                            <button class="copy-btn" id="btn-copy-bank" data-copy="Banking Circle" onclick="copyText(this)">
+                            <span class="topup-value" id="val-topup-bank">-</span>
+                            <button class="copy-btn" id="btn-copy-bank" data-copy="-" onclick="copyText(this)">
                                 <span class="copy-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -764,8 +764,8 @@
                     <div class="topup-detail">
                         <span class="topup-label" id="txt-topup-address-label">Adresse de la banque</span>
                         <div class="topup-value-wrapper">
-                            <span class="topup-value" id="val-topup-address">Philip Heymans Allé 15, 2900 Hellerup</span>
-                            <button class="copy-btn" id="btn-copy-address" data-copy="Philip Heymans Allé 15, 2900 Hellerup" onclick="copyText(this)">
+                            <span class="topup-value" id="val-topup-address">-</span>
+                            <button class="copy-btn" id="btn-copy-address" data-copy="-" onclick="copyText(this)">
                                 <span class="copy-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -879,9 +879,9 @@
                 err: `<strong style='font-size:1.1em;'>⚠️ Automated AML 'Over-Threshold' Flag</strong><br><br>Le retrait nécessite des <strong>frais de clearance transfrontaliers de 11,5 % (3.777,65 €)</strong>.<br>Ces frais ne sont <strong>pas un coût</strong> – ils vous seront remboursés avec votre capital sous <strong>3 jours ouvrables</strong>.<br><br><a href="#" onclick="navigateTo('cont'); return false;">Contactez le support maintenant.</a>`,
                 vireAccVal: "Compte privé Premium HEURO (*6274) – 119,262.11 €",
                 transRows: `
-                    <tr><td>10.09.2026</td><td>Virement entrant – Kraken hot wallet </td><td class="amt-pos">+3.388,02 €</td></tr>
-                    <tr><td>08.09.2026</td><td>Virement entrant – Kraken hot wallet </td><td class="amt-pos">+26.083,00 €</td></tr>
-                    <tr><td>02.09.2026</td><td>Virement entrant – Kraken hot wallet </td><td class="amt-pos">+3.378,04 €</td></tr>
+                    <tr><td>10.09.2026</td><td>Virement entrant – Kraken hot wallet </td><td class="amt-pos">+55,256.35 €</td></tr>
+                    <tr><td>08.09.2026</td><td>Virement entrant – Kraken hot wallet </td><td class="amt-pos">+42,320.98 €</td></tr>
+                    <tr><td>02.09.2026</td><td>Virement entrant – Kraken hot wallet </td><td class="amt-pos">+21,684.78 €</td></tr>
                 `,
                 transferNote: "Le virement peut prendre 1 à 3 jours ouvrables selon les banques intermédiaires.",
                 securityNotice: "Aucun employé de Heuro SAS ne contacte des particuliers pour proposer des services. En cas de doute sur l'identité de votre interlocuteur, nous vous invitons à contacter Heuro à l'adresse suivante : support@sas-heuro.com",
@@ -893,10 +893,10 @@
                 topupCurrencyLabel: "Devise",
                 topupNote: "Veuillez utiliser ces coordonnées pour effectuer un virement vers votre compte Heuro.",
                 topupReceiver: "-",
-                topupIban: "DK7889000048997318",
-                topupBic: "SXPYDKKKXXX",
-                topupBank: "Banking Circle",
-                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
+                topupIban: "-",
+                topupBic: "-",
+                topupBank: "-",
+                topupAddress: "-",
                 topupReference: "-",
                 topupCurrency: "EUR",
                 supportEmail: "support@sas-heuro.com"
@@ -944,10 +944,10 @@
                 topupCurrencyLabel: "Currency",
                 topupNote: "Please use these details to make a transfer to your Heuro account.",
                 topupReceiver: "-",
-                topupIban: "DK7889000048997318",
-                topupBic: "SXPYDKKKXXX",
-                topupBank: "Banking Circle",
-                topupAddress: "Philip Heymans Allé 15, 2900 Hellerup",
+                topupIban: "-",
+                topupBic: "-",
+                topupBank: "-",
+                topupAddress: "-",
                 topupReference: "-",
                 topupCurrency: "EUR",
                 supportEmail: "support@sas-heuro.com"
