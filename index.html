@@ -776,9 +776,9 @@
                             </button>
                         </div>
                     </div>
-                    <!-- Currency / Valuta -->
+                    <!-- Currency -->
                     <div class="topup-detail">
-                        <span class="topup-label" id="txt-topup-currency-label">Valuta</span>
+                        <span class="topup-label" id="txt-topup-currency-label">Devise</span>
                         <div class="topup-value-wrapper">
                             <span class="topup-value" id="val-topup-currency">EUR</span>
                             <button class="copy-btn" id="btn-copy-currency" data-copy="EUR" onclick="copyText(this)">
@@ -846,10 +846,9 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ----- Multi‑language Data (FR, EN) -----
+        // ----- Multi-language Data (ONLY FR + EN) -----
         const langData = {
             fr: {
                 loginBtn: "Connexion en ligne",
@@ -955,7 +954,7 @@
             }
         };
 
-        // ----- Improved Copy Function with Tooltip -----
+        // ----- Copy Function with Tooltip -----
         function copyText(btn) {
             const text = btn.getAttribute('data-copy');
             if (!text) return;
@@ -997,8 +996,7 @@
             const tooltip = document.createElement('div');
             tooltip.className = 'copy-tooltip';
             const lang = document.getElementById('html-tag').lang;
-            const msg = lang === 'en' ? 'Copied!' : 'Copié !';
-            tooltip.textContent = msg;
+            tooltip.textContent = (lang === 'en') ? 'Copied!' : 'Copié !';
             document.body.appendChild(tooltip);
 
             const rect = btn.getBoundingClientRect();
@@ -1021,7 +1019,7 @@
             }, 1800);
         }
 
-        // ----- Language Switch -----
+        // ----- Language Switch (FR + EN only) -----
         function setLanguage(l) {
             const d = langData[l];
             if (!d) return;
@@ -1129,7 +1127,7 @@
             document.getElementById('transfer-error').style.display = 'none';
         }
 
-        // ----- Login (new credentials) -----
+        // ----- Login -----
         function attemptLogin() {
             const user = document.getElementById('user').value.trim();
             const pass = document.getElementById('pass').value.trim();
